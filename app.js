@@ -12,7 +12,7 @@ const limiter = require('./middlewares/limiter');
 
 const app = express();
 
-const Server = async (next) => {
+const server = async (next) => {
   try {
     await mongoose.connect(config.MONGODB, {
       useNewUrlParser: true,
@@ -35,4 +35,4 @@ app.use(errors());
 
 app.use(hendelError);
 
-Server();
+server();
