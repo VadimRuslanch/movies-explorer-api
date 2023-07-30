@@ -1,7 +1,0 @@
-NODE_ENV=!production
-
-JWT_SECRET=f7bb2161e186a3127f3df953bb94bb43f006ff3e9f40a533a3e9b308c37bea10
-
-MONGODB_URI=mongodb://localhost:27017/bitfilmsdb
-
-PORT=3000
