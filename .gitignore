@@ -5,7 +5,7 @@ node_modules
 
 
 .npm
-.env
+.evn
 
 .DS_Store
 .idea
