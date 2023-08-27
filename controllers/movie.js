@@ -35,8 +35,7 @@ const createCardMuvie = async (req, res, next) => {
       image,
       trailerLink,
       thumbnail,
-      owner,
-      movieId,
+      id,
       nameRU,
       nameEN,
     } = req.body;
@@ -49,8 +48,8 @@ const createCardMuvie = async (req, res, next) => {
       image,
       trailerLink,
       thumbnail,
-      owner,
-      movieId,
+      owner: req.user._id,
+      id,
       nameRU,
       nameEN,
     });
@@ -63,11 +62,11 @@ const createCardMuvie = async (req, res, next) => {
 // Удаление карточки фильма с БД
 const deliteCardMuvie = async (req, res, next) => {
   try {
-    const muvieId = req.body;
-    const cardMuvie = await Muvie.findById(muvieId);
+    const movie = req.body;
+    const cardMuvie = await Muvie.findById(movie);
     if (!cardMuvie) {
       throw new NotFound('Карточка с указанным _id не найдена.');
-    } else if (muvieId.owner.toString() !== req.user._id) {
+    } else if (movie.owner.toString() !== req.user._id) {
       throw new Forbidden('Нельзя удалить чужую карточку.');
     } else {
       await cardMuvie.deleteOne();

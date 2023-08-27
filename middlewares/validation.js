@@ -11,12 +11,12 @@ const validationUrl = (url) => {
   throw new BadRequest('Передан некорретный url.');
 };
 
-const validationID = (id) => {
-  if (/^[0-9a-fA-F]{24}$/.test(id)) {
-    return id;
-  }
-  throw new BadRequest('Передан некорретный id.');
-};
+// const validationID = (id) => {
+//   if (/^[0-9a-fA-F]{24}$/.test(id)) {
+//     return id;
+//   }
+//   throw new BadRequest('Передан некорретный id.');
+// };
 
 module.exports.validCreateUser = celebrate({
   body: Joi.object().keys({
@@ -33,12 +33,6 @@ module.exports.validLogin = celebrate({
   }),
 });
 
-module.exports.validUserById = celebrate({
-  body: Joi.object().keys({
-    _id: Joi.string().required().custom(validationID),
-  }),
-});
-
 module.exports.validEditInfoUser = celebrate({
   body: Joi.object().keys({
     name: Joi.string().min(2).max(30).required(),
@@ -48,23 +42,24 @@ module.exports.validEditInfoUser = celebrate({
 
 module.exports.validCreateCard = celebrate({
   body: Joi.object().keys({
-    country: Joi.string().required(),
-    director: Joi.string().required(),
-    duration: Joi.number().required(),
-    year: Joi.string().required(),
-    description: Joi.string().required(),
-    image: Joi.string().required().custom(validationUrl),
-    trailerLink: Joi.string().required().custom(validationUrl),
-    thumbnail: Joi.string().required(),
-    owner: Joi.string().required(),
-    movieId: Joi.number().required(),
+    id: Joi.number().required(),
     nameRU: Joi.string().required(),
     nameEN: Joi.string().required(),
+    country: Joi.string().required(),
+    director: Joi.string().required(),
+    description: Joi.string().required(),
+    year: Joi.string().required(),
+    duration: Joi.number().required(),
+    trailerLink: Joi.string().required().custom(validationUrl),
+    image: Joi.string().required().custom(validationUrl),
+    thumbnail: Joi.string().required().custom(validationUrl),
+    created_at: Joi.string(),
+    updated_at: Joi.string(),
   }),
 });
 
 module.exports.validCardById = celebrate({
   body: Joi.object().keys({
-    _id: Joi.string().required().custom(validationID),
+    id: Joi.number().required(),
   }),
 });
