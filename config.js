@@ -7,7 +7,7 @@ const {
 
 const config = {
   JWT_SECRET: NODE_ENV === 'production' ? JWT_SECRET : 'very-secret-key',
-  MONGODB: NODE_ENV === 'production' ? MONGODB_URI : 'mongodb://localhost:27017/localDB',
+  MONGODB: NODE_ENV === 'production' ? MONGODB_URI : 'mongodb://localhost:27017/bitfilmsdb',
   PORT: NODE_ENV === 'production' ? PORT : 4000,
 };
 

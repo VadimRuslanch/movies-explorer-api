@@ -1,18 +1,9 @@
 const User = require('../models/user');
 const BadRequest = require('../error/BadRequest');
 
-// const getUser = async (req, res, next) => {
-//   try {
-//     const user = await User.find({});
-//     res.send(user);
-//   } catch (err) {
-//     next(err);
-//   }
-// };
-
 const getUserById = async (req, res, next) => {
   try {
-    const action = req.body;
+    const action = req.user;
     const user = await User.findById(action);
     res.status(200).send({
       name: user.name,
@@ -35,7 +26,10 @@ const editInfoUser = async (req, res, next) => {
     const user = await User.findByIdAndUpdate(
       req.user,
       action,
-      { new: true },
+      {
+        new: true,
+        runValidators: true,
+      },
     );
     res.send({
       name: user.name,

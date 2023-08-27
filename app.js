@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const helmet = require('helmet');
 const { errors } = require('celebrate');
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const hendelError = require('./middlewares/hendelError');
 const config = require('./config');
@@ -23,6 +24,11 @@ const server = async (next) => {
     next(err);
   }
 };
+
+app.use(cors({
+  origin: 'http://vadim-lebedev.movies.nomoreparties.co',
+  credentials: true,
+}));
 
 app.use(cookieParser());
 app.use(express.json());
