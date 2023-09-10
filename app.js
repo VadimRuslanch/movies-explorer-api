@@ -26,7 +26,7 @@ const server = async (next) => {
 };
 
 app.use(cors({
-  origin: 'http://vadim-lebedev.movies.nomoreparties.co',
+  origin: 'https://vadim-lebedev.movies.nomoreparties.co',
   credentials: true,
 }));
 
