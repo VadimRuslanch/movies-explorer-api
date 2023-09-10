@@ -45,7 +45,10 @@ const login = async (req, res, next) => {
         httpOnly: true,
         sameSite: true,
       });
-      res.status(200).send(email);
+      res.status(200).send({
+        email: user.email,
+        name: user.name,
+      });
     } else {
       throw new Unauthorized('Password не найден в БД');
     }
